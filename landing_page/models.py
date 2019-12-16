@@ -9,7 +9,7 @@ class DeployedApp(models.Model):
     port = models.IntegerField()
 
     def url(self):
-        return f"https://{self.ip}:{self.port}"
+        return f"http://{self.ip}:{self.port}"
 
     def __str__(self):
         return self.name
