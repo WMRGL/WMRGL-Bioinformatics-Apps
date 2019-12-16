@@ -2,7 +2,7 @@ from django import forms
 from landing_page.models import DeployedApp
 
 
-class NewAppForm(forms.ModelForm):
+class DeployedAppForm(forms.ModelForm):
     class Meta:
         model = DeployedApp
         fields = [

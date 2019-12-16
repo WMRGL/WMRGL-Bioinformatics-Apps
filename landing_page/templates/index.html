@@ -28,9 +28,9 @@
               <button id="remove-app-button" class="ui small icon button">
                 <i class="red trash icon"></i>
               </button>
-              <button id="edit-app-button" class="ui small icon button">
+              <a href="/edit/{{deployed_app.id}} "id="edit-app-button" class="ui small icon button">
                 <i class="blue pencil alternate icon"></i>
-              </button>
+              </a>
             </div>
           {% endif %}
           <a class="ui right floated small right labeled icon button" href="{{deployed_app.url}}">
