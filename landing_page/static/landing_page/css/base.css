@@ -1,0 +1,16 @@
+#main-menu {
+    background: #005EB8
+}
+
+
+.ui.menu .item:before{
+    width:0px
+}
+
+.ui.blue.button {
+    background-color: #005EB8
+}
+
+.nhs-blue.icon {
+    color: #005EB8
+}

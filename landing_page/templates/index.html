@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="ui center aligned icon header">
+    <source></source>
+    <div class="content">
+      Welcome!
+    </div>
+    <div class="sub header">
+      This is the central page for all Bioinformatics applications at WMRGL. Selec the application you wish to use or contact us using the link above.
+    </div>
+  </h1>
+  <div class="ui cards">
+    {% if user.is_authenticated %}
+      <a class="ui card" href="http://www.dog.com">
+        <div class="content">
+          <div class="header">
+            <i class="nhs-blue plus icon"></i>
+            Add Application [ADMIN]
+          </div>
+          <div class="description">
+            Add a new application to the application index.
+          </div>
+        </div>
+        <div class="extra content">
+          Logged in as {{user.username}}
+        </div>
+      </a>
+    {% endif %}
+  </div>
+{% endblock %}
