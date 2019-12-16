@@ -17,7 +17,7 @@ class IndexView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['deployed_apps'] = DeployedApp.objects.all()
+        context['deployed_apps'] = DeployedApp.objects.all().order_by('id')
         return context
 
     def form_valid(self, form):
