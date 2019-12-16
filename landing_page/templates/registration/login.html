@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load semanticui %}
 {% block content %}
     <div class="ui middle aligned grid">
     <div class="four wide column"></div>
     <div class="eight wide column">
       <form method="post" action="{% url 'login' %}" class="ui large form">
         {% csrf_token %}
-        <div class="ui stacked segment">
+        <div class="ui clearing segment">
+          <h3>Admin Log-in</h3>
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
@@ -29,11 +29,11 @@
               </div>
             </div>
           {% endif %}
-          <input type="submit" class="ui fluid large blue submit button" value="Login" />
+          <input type="submit" class="ui right floated large blue submit button" value="Login" />
           <input type="hidden" name="next" value="{{ next }}" />
+          <a class="ui large button left floated" href="{% url 'index' %}">Cancel</a>
         </div>
       </form>
     </div>
-    <div class="four wide column"></div>
   </div>
 {% endblock %}

@@ -2,7 +2,6 @@
     background: #005EB8
 }
 
-
 .ui.menu .item:before{
     width:0px
 }
@@ -13,4 +12,8 @@
 
 .nhs-blue.icon {
     color: #005EB8
+}
+
+.basic.segment.no-padding {
+    padding: 0px
 }

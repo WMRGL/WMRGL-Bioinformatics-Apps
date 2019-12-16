@@ -7,12 +7,62 @@
       Welcome!
     </div>
     <div class="sub header">
-      This is the central page for all Bioinformatics applications at WMRGL. Selec the application you wish to use or contact us using the link above.
+      This is the central page for all Bioinformatics applications at WMRGL. Select the application you wish to use or contact us using the link above.
     </div>
   </h1>
   <div class="ui cards">
+    {% for deployed_app in deployed_apps %}
+      <div id="{{deployed_app.name}}-card" class="ui card">
+        <div class="content">
+          <div class="header">
+            <i class="{{deployed_app.icon}} nhs-blue icon"></i>
+            {{deployed_app.name}}
+          </div>
+          <div class="description">
+            {{deployed_app.description}}
+          </div>
+        </div>
+        <div class="extra content">
+          {% if user.is_authenticated %}
+            <div class="ui icon buttons">
+              <button id="remove-app-button" class="ui small icon button">
+                <i class="red trash icon"></i>
+              </button>
+              <button id="edit-app-button" class="ui small icon button">
+                <i class="blue pencil alternate icon"></i>
+              </button>
+            </div>
+          {% endif %}
+          <a class="ui right floated small right labeled icon button" href="{{deployed_app.url}}">
+            <i class="right arrow icon"></i>
+            Go to app
+          </a>
+        </div>
+      </div>
+      <div id="remove-app-modal" class="ui basic modal">
+        <div class="ui icon header">
+          <i class="exclamation triangle icon"></i>
+          Removing {{deployed_app.name}}
+        </div>
+        <div class="content">
+          <div class="ui center aligned container">
+            <h5>You are about to remove {{deployed_app.name}} from this page, are you sure you want to do this?</h5>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui red basic cancel inverted button">
+            <i class="remove icon"></i>
+            No
+          </div>
+          <a class="ui green ok inverted button" href="/delete/{{deployed_app.id}}">
+            <i class="checkmark icon"></i>
+            Yes
+          </a>
+        </div>
+      </div> 
+    {% endfor %}
     {% if user.is_authenticated %}
-      <a class="ui card" href="http://www.dog.com">
+      <div id="add-new-app-card" class="ui card">
         <div class="content">
           <div class="header">
             <i class="nhs-blue plus icon"></i>
@@ -23,9 +73,28 @@
           </div>
         </div>
         <div class="extra content">
-          Logged in as {{user.username}}
+          <button class="ui right floated small right labeled icon button">
+            <i class="plus icon"></i>
+            Add app
+          </button>
         </div>
-      </a>
+      </div>
+      <div id="add-new-app-modal" class="ui small modal">
+        <div class="header">Add New App</div>
+        <div class="content">
+          <div class="ui basic segment clearing no-padding">
+            <form method="post" class="ui form">
+              {% csrf_token %}
+              {{form.as_div}}
+              <input type="submit" class="ui right floated large blue submit button" value="Save" />
+              <input type="hidden" name="next" value="{{ next }}" />
+              <button id="close-new-app-modal" class="ui large button left floated">Cancel</button>
+            </form>
+          </div>
+          * Acceptable FomanticUI Icons can be found <a target="_blank" href="https://fomantic-ui.com/elements/icon.html">here</a>.
+        </div>
+      </div>
     {% endif %}
   </div>
+  <script src="{% static 'landing_page/js/index.js' %}"></script>
 {% endblock %}

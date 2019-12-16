@@ -6,7 +6,7 @@ class DeployedApp(models.Model):
     description = models.TextField()
     icon = models.CharField(max_length=255)
     ip = models.CharField(max_length=255)
-    port = models.IntegerField
+    port = models.IntegerField()
 
     def url(self):
         return f"https://{self.ip}:{self.port}"
